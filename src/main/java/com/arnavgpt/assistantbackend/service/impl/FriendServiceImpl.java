@@ -3,10 +3,13 @@ package com.arnavgpt.assistantbackend.service.impl;
 
 import com.arnavgpt.assistantbackend.dto.friendDto.CreateFriendCommand;
 import com.arnavgpt.assistantbackend.dto.friendDto.FriendDto;
+import com.arnavgpt.assistantbackend.dto.friendDto.UpdateFriendCommand;
 import com.arnavgpt.assistantbackend.entities.AppUser;
+import com.arnavgpt.assistantbackend.entities.Friend;
 import com.arnavgpt.assistantbackend.repositories.AppUserRepository;
 import com.arnavgpt.assistantbackend.repositories.FriendRepository;
 import com.arnavgpt.assistantbackend.service.template.FriendService;
+import com.arnavgpt.assistantbackend.util.BirthdayValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
