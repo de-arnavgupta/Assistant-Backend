@@ -9,9 +9,9 @@ import com.arnavgpt.assistantbackend.repositories.FriendRepository;
 import com.arnavgpt.assistantbackend.service.template.ReminderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.*;
 import java.util.Comparator;
+import com.arnavgpt.assistantbackend.util.BirthdayDates;
 
 @Service
 @Transactional(readOnly = true)
@@ -32,7 +32,7 @@ public class ReminderServiceImpl implements ReminderService {
 
         var items = friends.findByUser_Id(userId).stream()
                 .map(f -> {
-                    LocalDate next = BirthadayDates.nextOccurrence(today, f.getDobMonth(), f.getDobDay());
+                    LocalDate next = BirthdayDates.nextOccurrence(today, f.getDobMonth(), f.getDobDay());
                     if (!next.equals(today)) return null;
                     Integer turning = f.getDobYear() == null ? null : next.getYear() - f.getDobYear();
                     return new BirthdayItem(f.getId(), f.getFullName(), next, turning);
