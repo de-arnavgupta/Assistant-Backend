@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.*;
 import java.util.Comparator;
+import java.util.Objects;
 import com.arnavgpt.assistantbackend.util.BirthdayDates;
 
 @Service
 @Transactional(readOnly = true)
+
 public class ReminderServiceImpl implements ReminderService {
 
     private final AppUserRepository users;
@@ -37,7 +39,7 @@ public class ReminderServiceImpl implements ReminderService {
                     Integer turning = f.getDobYear() == null ? null : next.getYear() - f.getDobYear();
                     return new BirthdayItem(f.getId(), f.getFullName(), next, turning);
                 })
-                .filter(x -> x != null)
+                .filter(Objects::nonNull)
                 .sorted(Comparator.comparing(BirthdayItem::occursOn).thenComparing(BirthdayItem::fullName))
                 .toList();
 
@@ -59,7 +61,7 @@ public class ReminderServiceImpl implements ReminderService {
                     Integer turning = f.getDobYear() == null ? null : next.getYear() - f.getDobYear();
                     return new BirthdayItem(f.getId(), f.getFullName(), next, turning);
                 })
-                .filter(x -> x != null)
+                .filter(Objects::nonNull)
                 .sorted(Comparator
                         .comparing(BirthdayItem::occursOn)
                         .thenComparing(BirthdayItem::fullName))
